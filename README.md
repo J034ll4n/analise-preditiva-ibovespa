@@ -107,6 +107,7 @@ Este projeto cumpriu o objetivo de desenvolver um modelo preditivo com performan
 
 O modelo final, com **80% de acurácia**, prova ser uma ferramenta quantitativa valiosa. Futuras iterações podem explorar a inclusão de dados exógenos (taxa de juros, câmbio, sentimento de notícias) para aprimorar ainda mais sua capacidade preditiva.
 
+Para uma análise aprofundada da metodologia, dos resultados e das conclusões, consulte o relatório técnico completo disponível em formato PDF no repositório.
 ---
 
 ## 7. Como Replicar o Projeto
