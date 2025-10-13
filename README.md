@@ -1,126 +1,98 @@
-````markdown
-# 🚀 Modelo Preditivo para a Tendência do IBOVESPA
+# 📈 Modelo Preditivo para a Tendência do IBOVESPA | Acurácia Final: 80%
 
 ![Status: Concluído](https://img.shields.io/badge/Status-Concluído-brightgreen)
+![Acurácia](https://img.shields.io/badge/Acurácia_Final-80%25-success)
 ![Linguagem](https://img.shields.io/badge/Linguagem-Python_3-blue)
 ![Bibliotecas](https://img.shields.io/badge/Bibliotecas-Scikit--learn_|_XGBoost_|_Pandas-lightgrey)
 
-### Tabela de Conteúdos
-1. [Visão Geral do Projeto](#-visão-geral-do-projeto)
-2. [Principais Destaques](#-principais-destaques)
-3. [Metodologia do Projeto](#-metodologia-do-projeto)
-4. [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-5. [Estrutura do Repositório](#-estrutura-do-repositório)
-6. [Como Executar o Projeto](#-como-executar-o-projeto)
-7. [Resultados do Modelo Final](#-resultados-do-modelo-final)
-8. [Conclusão](#-conclusão)
-9. [Autor](#-autor)
+## 🎯 O Desafio: Prever o Imprevisível
 
-## 📝 Visão Geral do Projeto
+[cite_start]O objetivo deste projeto foi desenvolver um modelo de Machine Learning capaz de prever a tendência de fechamento (alta ou baixa) do índice IBOVESPA para o dia seguinte[cite: 3]. [cite_start]Utilizando uma base de dados histórica e diária, o modelo visa servir como ferramenta de apoio para analistas quantitativos[cite: 4, 5].
 
-Este projeto apresenta o desenvolvimento de um modelo de Machine Learning para prever a tendência de fechamento (**alta** ou **baixa**) do índice IBOVESPA no dia seguinte. Utilizando um extenso histórico de dados diários, o modelo foi construído para servir como um insumo em dashboards, auxiliando analistas quantitativos na tomada de decisão.
+Prever o mercado financeiro é um desafio notório devido à sua alta complexidade, ruído e natureza não-estacionária, como foi confirmado na análise exploratória.
 
-O trabalho aborda o ciclo completo de um projeto de Data Science, desde a limpeza e análise exploratória dos dados até a engenharia de features, otimização de modelos e validação robusta dos resultados.
+---
 
-## ✨ Principais Destaques
+## 🚀 A Jornada Metodológica: Do Fracasso ao Sucesso
 
-- **Performance Superior à Meta:** O modelo final alcançou **80% de acurácia** em um conjunto de teste não visto, superando a meta de 75% do desafio.
-- **Metodologia Robusta:** Utilização de técnicas avançadas como Validação Cruzada para Séries Temporais (`TimeSeriesSplit`) e uma divisão `Treino-Validação-Teste` para garantir a generalização do modelo e evitar overfitting.
-- **Análise Exploratória Profunda:** Geração de insights valiosos sobre os diferentes "regimes" do mercado, a natureza não-estacionária da série e o fenômeno das "caudas gordas" nos retornos diários.
-- **Engenharia de Features:** Criação de um rico conjunto de features (lags, médias móveis, volatilidade, indicadores técnicos como RSI e MACD) e uma metodologia sistemática para selecionar as mais preditivas.
-- **Justificativa Estratégica:** O relatório documenta a transição de modelos de série temporal clássicos (ARIMA, Prophet), que se mostraram inadequados, para uma abordagem de classificação supervisionada, que se provou muito mais eficaz.
+O desenvolvimento seguiu uma abordagem iterativa e adaptativa, aprendendo com os resultados de cada etapa para refinar a estratégia.
 
-## 📊 Metodologia do Projeto
+### Passo 1: Análise e a Falha dos Modelos Temporais
+[cite_start]A Análise Exploratória de Dados (EDA) revelou que o IBOVESPA opera em diferentes "regimes", influenciado por eventos macroeconômicos e com o fenômeno das "caudas gordas" nos retornos diários[cite: 47, 273]. [cite_start]A série demonstrou ser **não-estacionária**[cite: 296, 297].
 
-O projeto seguiu um fluxo de trabalho estruturado para garantir a qualidade e a confiabilidade dos resultados:
+[cite_start]A tentativa inicial de usar modelos de série temporal clássicos (ARIMA, Prophet) falhou em capturar as oscilações diárias, resultando em uma acurácia próxima de 50% — o equivalente a um palpite aleatório[cite: 357, 358, 403].
 
-**1. Limpeza e Preparação** → **2. Análise Exploratória (EDA)** → **3. Modelagem Inicial (Série Temporal)** → **4. Pivô Estratégico** → **5. Engenharia de Features Avançada** → **6. Otimização e Validação** → **7. Modelo Final (XGBoost)**
+### Passo 2: A Mudança de Estratégia
+[cite_start]O ponto de virada do projeto foi a reformulação do problema: em vez de prever o *valor* da série, o foco passou a ser uma tarefa de **classificação binária**: o dia seguinte será de **alta (1)** ou de **baixa (0)**?[cite: 431, 432]. [cite_start]Esta abordagem permitiria o uso de algoritmos mais poderosos, como o XGBoost, para capturar as relações não-lineares do mercado[cite: 434].
 
-## 🛠️ Tecnologias Utilizadas
+### Passo 3: Engenharia de Features Robusta
+O sucesso da abordagem de classificação dependia da criação de variáveis (features) que traduzissem a dinâmica temporal em informações numéricas. Foram criadas mais de 30 features, incluindo:
+- **Lags de Retorno:** Momentum de curtíssimo prazo.
+- **Médias Móveis e Distâncias:** Para capturar a tendência e o quão "esticado" o preço estava.
+- **Indicadores Técnicos:** Como **RSI** e **MACD** para medir o momentum e a força da tendência.
 
-- **Linguagem:** Python 3
-- **Bibliotecas Principais:**
-  - `Pandas` e `NumPy` para manipulação de dados.
-  - `Scikit-learn` para pré-processamento, métricas e modelagem.
-  - `XGBoost` e `LightGBM` para os modelos de Gradient Boosting.
-  - `imbalanced-learn` para balanceamento de classes (SMOTE).
-  - `Matplotlib` e `Seaborn` para visualização de dados.
-- **Ambiente:** Jupyter Notebook
+[cite_start]Para garantir a integridade do modelo, uma prevenção rigorosa de **data leakage** foi implementada usando o método `.shift(1)` em todas as features, assegurando que as previsões fossem baseadas apenas em dados passados[cite: 450, 451].
 
-## 📁 Estrutura do Repositório
+### Passo 4: Seleção e Otimização Sistemática
+Com um vasto leque de features, foi executado um processo rigoroso para encontrar a melhor combinação:
+1.  [cite_start]**Benchmark de Modelos:** Uma competição inicial entre 4 algoritmos mostrou que modelos baseados em árvores (Random Forest e XGBoost) eram superiores[cite: 527, 532].
+2.  [cite_start]**Seleção de Features por Força Bruta:** Um loop testou centenas de combinações de features e revelou que um conjunto enxuto de apenas **5 features** elevou a acurácia do XGBoost para **87%** em testes preliminares[cite: 563, 564].
+3.  [cite_start]**Otimização Final:** Utilizando uma divisão de dados em **Treino, Validação e Teste**, os hiperparâmetros do XGBoost foram ajustados finamente (Grid Search) para maximizar sua capacidade de generalização e evitar overfitting[cite: 596, 601].
 
-O projeto está organizado em notebooks sequenciais que contam a história do desenvolvimento:
+---
 
-- **`01_exploracao_e_limpeza.ipynb`**: Carregamento, limpeza e padronização dos dados brutos do IBOVESPA.
-- **`02.Análise_exploratória_dos_dados.ipynb`**: Análise visual e estatística para extrair insights sobre a série histórica.
-- **`03_SérieTemporal.ipynb`**: Primeiras tentativas de modelagem com abordagens de série temporal (Decomposição, ARIMA, Prophet) e a justificativa para a mudança de estratégia.
-- **`04_Featured_enginerring_e_treinamento_modelos.ipynb`**: O notebook principal, contendo a engenharia de features, o benchmark de modelos, a seleção de features, a otimização de hiperparâmetros e a avaliação do modelo final.
+## 🏆 O Modelo Campeão: XGBoost
 
-## ⚙️ Como Executar o Projeto
+O modelo final, um **XGBoost** otimizado, demonstrou ser a solução mais robusta e precisa.
 
-Siga os passos abaixo para replicar os resultados.
+#### Features Vencedoras
+O modelo baseia suas previsões no seguinte conjunto de 5 features:
+- `Lag_Retorno_D-2`
+- `SMA_7`
+- `SMA_14`
+- `Vol_SMA_21`
+- `Dia_da_semana`
 
-### Pré-requisitos
-- Python 3.8 ou superior
-- Git
-
-### Setup
-1. Clone este repositório:
-   ```bash
-   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
-````
-
-2.  Navegue até a pasta do projeto:
-    ```bash
-    cd nome-do-repositorio
-    ```
-3.  Instale as dependências (recomenda-se o uso de um ambiente virtual):
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-### Execução
-
-Abra os notebooks Jupyter na ordem numérica (`01` a `04`) e execute as células para reproduzir cada etapa da análise e modelagem.
-
-## 📈 Resultados do Modelo Final
-
-O modelo campeão foi um **XGBoost** treinado com 5 features selecionadas e hiperparâmetros otimizados. Sua performance no conjunto de teste final (30 dias não vistos) foi:
+#### Performance no Conjunto de Teste (Dados Não Vistos)
 
 | Métrica | Resultado |
 | :--- | :--- |
-| **Acurácia** | **80,00%** |
-| **AUC (Área Sob a Curva ROC)** | **0.81** |
-| **Precision (Classe Alta)** | 0.88 |
-| **Recall (Classe Alta)** | 0.78 |
-| **Precision (Classe Baixa)** | 0.71 |
-| **Recall (Classe Baixa)** | 0.83 |
+| ✅ **Acurácia** | **80,00%** |
+| 🎯 **AUC** | **0.73** |
+| **Recall (Alta)** | 79% |
+| **Recall (Baixa)** | 18% |
 
-### Visualização da Performance
+#### Análise Visual da Performance
 
 **Matriz de Confusão**
-*(Esta matriz detalha os acertos e erros do modelo, mostrando seu bom desempenho em ambas as classes)*
+*A matriz confirma a acurácia de 80%, com 24 acertos em 30 dias de teste.*
+![Matriz de Confusão](img/matriz_confusao.png)
 
 **Curva ROC**
-*(A AUC de 0.81 demonstra o excelente poder de discriminação do modelo entre dias de alta e baixa)*
+*A AUC de 0.73 indica um bom poder de discriminação do modelo entre os dias de alta e baixa.*
+![Curva ROC](img/curva_roc.png)
 
-**Importância das Features**
-*(O modelo baseou suas decisões principalmente em sinais de reversão à média e anomalias de volume)*
+---
 
-## 🧠 Conclusão
+## 🔮 Próximos Passos
+O modelo atual utiliza apenas dados endógenos (do próprio índice). [cite_start]A performance pode ser aprimorada com a inclusão de **dados exógenos**, como[cite: 698, 699, 700]:
+- Taxa de juros (Selic) e inflação (IPCA).
+- Variação de índices internacionais (S&P 500).
+- Câmbio (Dólar) e preços de commodities.
+- Análise de sentimento a partir de notícias do mercado.
 
-O projeto cumpriu com sucesso o objetivo de criar um modelo preditivo com performance superior a 75%. A principal teoria validada foi a de que, para prever a direção diária do IBOVESPA, uma abordagem de **classificação com engenharia de features robusta** é mais eficaz do que modelos de série temporal clássicos.
+---
 
-O modelo final **XGBoost**, com **80% de acurácia**, prova ser uma ferramenta quantitativa valiosa para complementar a análise e a tomada de decisão no mercado de capitais. Como próximos passos, sugere-se a inclusão de dados exógenos (taxa de juros, câmbio, sentimento de notícias) para aprimorar ainda mais a capacidade preditiva do modelo.
+## ⚙️ Como Replicar o Projeto
+O projeto está organizado em notebooks sequenciais. Para executar:
 
-## 📬 Autor
+1.  Clone o repositório.
+2.  Instale as dependências: `pip install pandas numpy scikit-learn xgboost lightgbm imbalanced-learn matplotlib seaborn jupyter`.
+3.  Execute os notebooks na ordem numérica: `01` -> `02` -> `03` -> `04`.
 
+---
+
+## 👨‍💻 Autor
 **Ana Raquel**
-
-  - [LinkedIn](https://www.google.com/search?q=https://www.linkedin.com/in/seu-linkedin/)
-  - [GitHub](https://www.google.com/search?q=https://github.com/seu-usuario)
-
-<!-- end list -->
-
-```
-```
+- [LinkedIn](https://www.linkedin.com/in/seu-linkedin/)
+- [GitHub](https://github.com/seu-usuario)
