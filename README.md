@@ -25,22 +25,22 @@ Uma análise detalhada foi realizada para extrair insights e entender o comporta
 
 #### Gráfico da Série Histórica
 A história do índice é marcada por ciclos e eventos macroeconômicos. Um modelo preditivo precisa ser treinado com um longo histórico para aprender com esses diferentes "regimes" de mercado.
-![Gráfico da Série Histórica](img/download%20(2).png)
+![Gráfico da Série Histórica](img/download%20(27).png)
 
 #### Distribuição e Densidade do Preço
 A análise de densidade revela que o IBOVESPA operou historicamente em dois "regimes" de preço principais, em torno de 60.000 e 115.000 pontos, em vez de se concentrar em uma única média.
 
 | Boxplot do Preço de Fechamento | Gráfico de Violino (Densidade) |
 | :---: | :---: |
-| ![Boxplot](img/download%20(3).png) | ![Gráfico de Violino](img/download%20(4).png) |
+| ![Boxplot](img/download%20(28).png) | ![Gráfico de Violino](img/download%20(29).png) |
 
 #### Análise do Volume de Negociações
 O gráfico de volume revela uma quebra estrutural em 2008, mostrando que a crise não afetou apenas o preço, mas alterou fundamentalmente a liquidez do mercado.
-![Gráfico de Volume](img/download%20(4).png)
+![Gráfico de Volume](img/download%20(30).png)
 
 #### Análise de Tendência com Médias Móveis
 A posição do preço em relação às médias móveis é um indicador claro da tendência principal do mercado (bull vs. bear market) e as próprias médias atuam como suportes e resistências dinâmicos.
-![Médias Móveis](img/download%20(5).png)
+![Médias Móveis](img/download%20(31).png)
 
 ---
 
