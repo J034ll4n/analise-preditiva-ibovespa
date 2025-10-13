@@ -1,17 +1,3 @@
-Com certeza\! Um bom `README.md` é o cartão de visitas do seu projeto no GitHub. Ele precisa ser claro, conciso e profissional, guiando o leitor através do seu trabalho.
-
-Peguei todas as informações do excelente relatório que você montou e as estruturei em um formato ideal para o GitHub, utilizando Markdown para um visual mais limpo e organizado.
-
------
-
-**Instruções:**
-
-1.  Crie um novo arquivo no seu repositório chamado `README.md`.
-2.  Copie e cole todo o conteúdo abaixo nesse arquivo.
-3.  **Importante:** Você precisará fazer o upload das imagens dos gráficos (Matriz de Confusão, Curva ROC, etc.) para uma pasta no seu repositório (sugestão: crie uma pasta chamada `img/`) e depois ajustar os links no texto.
-
------
-
 ````markdown
 # 🚀 Modelo Preditivo para a Tendência do IBOVESPA
 
