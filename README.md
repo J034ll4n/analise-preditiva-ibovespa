@@ -1,4 +1,4 @@
-# 🚀 Modelo Preditivo para a Tendência do IBOVESPA | Acurácia Final: 80%
+# Modelagem Preditiva para Classificação de Tendência do IBOVESPA | Acurácia Final: 80%
 
 ![Status: Concluído](https://img.shields.io/badge/Status-Concluído-brightgreen)
 ![Acurácia](https://img.shields.io/badge/Acurácia_Final-80%25-success)
@@ -120,6 +120,5 @@ Para uma análise aprofundada da metodologia, dos resultados e das conclusões, 
 
 ## 8. Autor
 
-**Ana Raquel**
-- [LinkedIn](https://www.linkedin.com/in/seu-linkedin/)
-- [GitHub](https://github.com/seu-usuario)
+**Joe Allan Zirn**
+- [LinkedIn]([https://www.linkedin.com/in/seu-linkedin](https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
