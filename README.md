@@ -121,4 +121,4 @@ Para uma análise aprofundada da metodologia, dos resultados e das conclusões, 
 ## 8. Autor
 
 **Joe Allan Zirn**
-- [LinkedIn]([https://www.linkedin.com/in/seu-linkedin](https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
+- [LinkedIn](https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
